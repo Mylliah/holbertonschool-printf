@@ -18,6 +18,6 @@ int print_char(va_list args);
 int print_string(va_list args);
 int print_specifier(va_list args);
 void  _putchar(char c);
-int handle_specifiers(const char *format, va_list args, int *index);
+int handle_specifier(const char *format, va_list args, int *index);
 
 #endif /* MAIN_H */
