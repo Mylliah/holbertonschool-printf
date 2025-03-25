@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdio.h>
+#include <stdarg.h>
 
 /**
  * struct format - structure for format specifier handling
