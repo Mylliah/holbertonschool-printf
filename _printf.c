@@ -72,7 +72,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			putchar(format[index]);
+			_putchar(format[index]);
 			count++;
 		}
 		index++;
