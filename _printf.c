@@ -15,6 +15,7 @@ int handle_specifier(const char *format, va_list args, int *index)
 {
 	int count = 0;
 	int type_found = 0;
+	int type_index = 0;
 
 	print_format types[] = {
 		{'c', print_char},
@@ -23,7 +24,7 @@ int handle_specifier(const char *format, va_list args, int *index)
 		{'\0', NULL}
 	};
 
-	for (int type_index = 0 ; types[type_index].type ; type_index++)
+	for (type_index = 0 ; types[type_index].type ; type_index++)
 	{
 		if (format[*index] == types[type_index].type)
 		{
