@@ -70,10 +70,8 @@ int _printf(const char *format, ...)
 		{
 			if (format[index + 1] == '\0')
 			{
-				_putchar('%');
-				count++;
-				index++;
-				break;
+				va_end(args);
+				return (-1);
 			}
 
 			index++;
