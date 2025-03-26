@@ -10,7 +10,8 @@
   - `%c` : Affiche un caractère
   - `%s` : Affiche une chaîne de caractères
   - `%%` : Affiche le caractère `%`
-  - `%d` et `%i` : Affiche un entier signé
+  - `%d` : Affiche un entier signé
+  - `%i` : Affiche un entier signé
 
 ## Compilation
 
