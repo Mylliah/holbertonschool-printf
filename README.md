@@ -1,7 +1,4 @@
-C - printf
-projet print
-sommaire
-Description
+C - printf projet print sommaire Description
 
 Installation
 
@@ -12,4 +9,3 @@ Contribuer
 Licence
 
 Auteurs
-
