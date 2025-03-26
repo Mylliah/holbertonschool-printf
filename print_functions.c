@@ -76,34 +76,38 @@ int print_string(va_list args)
 int print_int(va_list args)
 {
 	int num = va_arg(args, int);
-	char number_str[12];
-	int i = 0, length = 0;
-	int is_negative = 0;
 
-	if (num == 0)
-	{
-		_putchar('0');
-		return (1);
-	}
+	int len = 0;
+	unsigned int abs_num;
+	unsigned int divisor = 1;
 
 	if (num < 0)
 	{
-		is_negative = 1;
-		num = -num;
 		_putchar('-');
-		length++;
+		len++;
+		abs_num = (unsigned int)(-num);
 	}
-
-	while (num > 0)
+	else
 	{
-		number_str[i++] = (num % 10) + '0';
-		num /= 10;
+		abs_num = (unsigned int)num;
 	}
 
-	length += i + is_negative;
+	if (abs_num == 0)
+	{
+		_putchar('0');
+		return (len + 1);
+	}
 
-	while (i > 0)
-		_putchar(number_str[--i]);
+	while (abs_num / divisor > 9)
+		divisor *= 10;
 
-	return (length);
+	while (divisor > 0)
+	{
+		_putchar((abs_num / divisor) + '0');
+		abs_num %= divisor;
+		divisor /= 10;
+		len++;
+	}
+
+	return (len);
 }
