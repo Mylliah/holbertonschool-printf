@@ -1,25 +1,25 @@
 #ifndef MAIN_H
 #define MAIN_H
-
+#include <stdio.h>
 #include <stdarg.h>
-#include <unistd.h>
 
-/* Struct */
-typedef struct print_format
+/**
+ * struct format - structure for format specifier handling
+ * @type: the format specifier character
+ * @f: pointer to the corresponding handler function
+ */
+typedef struct format
 {
-    char spec;
+    char type;
     int (*f)(va_list);
 } print_format;
 
-/* Prototypes */
 int _printf(const char *format, ...);
 int print_char(va_list args);
 int print_string(va_list args);
-int print_percent(va_list args);
+int print_specifier(va_list args);
 int print_int(va_list args);
-void _itoa(int n, char *buffer);
-void _reverse(char *s);
-int _strlen(char *s);
-int _putchar(char c);
+void  _putchar(char c);
+int handle_specifier(const char *format, va_list args, int *index);
 
 #endif /* MAIN_H */

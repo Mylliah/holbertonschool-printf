@@ -1,59 +1,89 @@
 #include "main.h"
+#include <stdarg.h>
 
 /**
- * _printf
- * @format:
+ * handle_specifier - handles format specifiers after '%' character
+ * @format: format string to be handled
+ * @args: variable arguments list
+ * @index: pointer to current position index in format string
+ *
+ * Calls the corresponding function
+ * Return: number of characters printed for the specifier found
  */
-int _printf(const char *format, ...)
+
+int handle_specifier(const char *format, va_list args, int *index)
 {
-    va_list args;
-    int i = 0, j, count = 0;
+    int count = 0;
+    int type_found = 0;
+    int type_index = 0;
 
     print_format types[] = {
         {'c', print_char},
         {'s', print_string},
-        {'%', print_percent},
+        {'%', print_specifier},
         {'d', print_int},
         {'i', print_int},
-        {0, NULL}
+        {'\0', NULL}
     };
 
-    if (!format)
-        return (-1);
-
-    va_start(args, format);
-    
-    while (format[i])
+    for (type_index = 0; types[type_index].type; type_index++)
     {
-        if (format[i] == '%')
+        if (format[*index] == types[type_index].type)
         {
-            i++;
-            if (!format[i])
-                return (-1);
-
-            for (j = 0; types[j].spec; j++)
-            {
-                if (format[i] == types[j].spec)
-                {
-                    count += types[j].f(args);
-                    break;
-                }
-            }
-            if (!types[j].spec)
-            {
-                _putchar('%');
-                _putchar(format[i]);
-                count += 2;
-            }
+            count += types[type_index].f(args);
+            type_found = 1;
+            break;
         }
-        else
-        {
-            _putchar(format[i]);
-            count++;
-        }
-        i++;
     }
-    
-    va_end(args);
+
+    if (!type_found)
+    {
+        _putchar('%');
+        _putchar(format[*index]);
+        count += 2;
+    }
     return (count);
 }
+/**
+ * _printf - implementation of printf
+ * @format: format string containing text and specifiers
+ *
+ * Return: -1 for NULL, empty format strg OR total number of characters printed
+ */
+
+ int _printf(const char *format, ...)
+ {
+     va_list args;
+
+     int index = 0;
+     int count = 0;
+     va_start(args, format);
+
+     if (!format || format[0] == '\0')
+         return (-1);
+
+     while (format && format[index])
+     {
+         if (format[index] == '%')
+         {
+             if (format[index + 1] == '\0')
+             {
+                 _putchar('%');
+                 count++;
+                 break;
+             }
+             index++;
+             count += handle_specifier(format, args, &index);
+         }
+         else
+         {
+             _putchar(format[index]);
+             count++;
+         }
+         index++;
+     }
+
+     va_end(args);
+     return (count);
+ }
+ 
