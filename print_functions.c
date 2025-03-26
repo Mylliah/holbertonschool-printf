@@ -62,36 +62,30 @@ int print_string(va_list args)
 int print_int(va_list args)
 {
     int num = va_arg(args, int);
-    int length = 0, temp;
-    int num_digits = 0;
-    char number_str[50];
-    int i;
-    if (num < 0)
-    {
-        num = -num;
-        _putchar('-');
-        length++;
-    }
-    temp = num;
-    if (temp == 0)
+    char number_str[12];
+    int i = 0, length = 0;
+    int is_negative = 0;
+    if (num == 0)
     {
         _putchar('0');
         return (1);
     }
-    while (temp > 0)
+    if (num < 0)
     {
-        temp /= 10;
-        num_digits++;
-    }
-    number_str[num_digits] = '\0';
-    for (i = num_digits - 1; i >= 0; i--) 
-    {
-        number_str[i] = (num % 10) + '0';
-    }
-    for (i = 0; number_str[i] != '\0'; i++)
-    {
-        _putchar(number_str[i]);
+        is_negative = 1;
+        num = -num;
+        _putchar('-');
         length++;
+    }
+    while (num > 0)
+    {
+        number_str[i++] = (num % 10) + '0';
+        num /= 10;
+    }
+    length += i + is_negative;
+    while (i > 0)
+    {
+        _putchar(number_str[--i]);
     }
     return (length);
 }
