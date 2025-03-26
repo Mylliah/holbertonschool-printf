@@ -3,7 +3,7 @@
 
 /**
  * handle_specifier - handles format specifiers after '%' character
- * @format: format string to be handled
+ * @format: format string to be handle
  * @args: variable arguments list
  * @index: pointer to current position index in format string
  *
@@ -13,37 +13,39 @@
 
 int handle_specifier(const char *format, va_list args, int *index)
 {
-    int count = 0;
-    int type_found = 0;
-    int type_index = 0;
+	int count = 0;
+	int type_found = 0;
+	int type_index = 0;
 
-    print_format types[] = {
-        {'c', print_char},
-        {'s', print_string},
-        {'%', print_specifier},
-        {'d', print_int},
-        {'i', print_int},
-        {'\0', NULL}
-    };
+	print_format types[] = {
+		{'c', print_char},
+		{'s', print_string},
+		{'%', print_specifier},
+		{'d', print_int},
+		{'i', print_int},
+		{'\0', NULL}
+	};
 
-    for (type_index = 0; types[type_index].type; type_index++)
-    {
-        if (format[*index] == types[type_index].type)
-        {
-            count += types[type_index].f(args);
-            type_found = 1;
-            break;
-        }
-    }
+	for (type_index = 0 ; types[type_index].type ; type_index++)
+	{
+		if (format[*index] == types[type_index].type)
+		{
+			count += types[type_index].f(args);
+			type_found = 1;
+			break;
+		}
+	}
 
-    if (!type_found)
-    {
-        _putchar('%');
-        _putchar(format[*index]);
-        count += 2;
-    }
-    return (count);
+	if (!type_found)
+	{
+		_putchar('%');
+		_putchar(format[*index]);
+		count += 2;
+	}
+	return (count);
 }
+
+
 /**
  * _printf - implementation of printf
  * @format: format string containing text and specifiers
@@ -51,39 +53,37 @@ int handle_specifier(const char *format, va_list args, int *index)
  * Return: -1 for NULL, empty format strg OR total number of characters printed
  */
 
- int _printf(const char *format, ...)
- {
-     va_list args;
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int index = 0;
+	int count = 0;
 
-     int index = 0;
-     int count = 0;
-     va_start(args, format);
+	va_start(args, format);
 
-     if (!format || format[0] == '\0')
-         return (-1);
+	if (!format || format[0] == '\0')
+		return (-1);
 
-     while (format && format[index])
-     {
-         if (format[index] == '%')
-         {
-             if (format[index + 1] == '\0')
-             {
-                 _putchar('%');
-                 count++;
-                 break;
-             }
-             index++;
-             count += handle_specifier(format, args, &index);
-         }
-         else
-         {
-             _putchar(format[index]);
-             count++;
-         }
-         index++;
-     }
+	while (format && format[index])
+	{
+		if (format[index] == '%')
+		{
+			if (format[index + 1] == '\0')
+			{
+				va_end(args);
+				return (-1);
+			}
+			index++;
+			count += handle_specifier(format, args, &index);
+		}
+		else
+		{
+			_putchar(format[index]);
+			count++;
+		}
+		index++;
+	}
 
-     va_end(args);
-     return (count);
- }
- 
+	va_end(arg);
+	return (count);
+}
