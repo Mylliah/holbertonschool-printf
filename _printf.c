@@ -73,7 +73,8 @@ int _printf(const char *format, ...)
 				_putchar('%');
 				count++;
 				break;
-			}	
+			}
+
 			index++;
 			count += handle_specifier(format, args, &index);
 		}
