@@ -7,7 +7,7 @@
  */
 void _putchar(char c)
 {
-    write(1, &c, 1);
+write(1, &c, 1);
 }
 /**
  * print_char - function that prints a single character from va_list arguments
@@ -17,8 +17,8 @@ void _putchar(char c)
  */
 int print_char(va_list args)
 {
-    _putchar(va_arg(args, int));
-    return (1);
+_putchar(va_arg(args, int));
+return (1);
 }
 /**
  * print_specifier - function that prints a character '%'
@@ -28,9 +28,9 @@ int print_char(va_list args)
  */
 int print_specifier(va_list args)
 {
-    (void)args;
-    _putchar('%');
-    return (1);
+(void)args;
+_putchar('%');
+return (1);
 }
 /**
  * print_string - prints a string from va_list arguments
@@ -41,17 +41,17 @@ int print_specifier(va_list args)
  */
 int print_string(va_list args)
 {
-    char *str = va_arg(args, char *);
-    int len = 0;
-    if (!str)
-        str = "(null)";
+char *str = va_arg(args, char *);
+int len = 0;
+if (!str)
+str = "(null)";
 
-    while (*str)
-    {
-        _putchar(*str++);
-        len++;
-    }
-    return (len);
+while (*str)
+{
+_putchar(*str++);
+len++;
+}
+return (len);
 }
 /**
  * print_int - function that prints an integer from va_list arguments
@@ -61,31 +61,29 @@ int print_string(va_list args)
  */
 int print_int(va_list args)
 {
-    int num = va_arg(args, int);
-    char number_str[12];
-    int i = 0, length = 0;
-    int is_negative = 0;
-    if (num == 0)
-    {
-        _putchar('0');
-        return (1);
-    }
-    if (num < 0)
-    {
-        is_negative = 1;
-        num = -num;
-        _putchar('-');
-        length++;
-    }
-    while (num > 0)
-    {
-        number_str[i++] = (num % 10) + '0';
-        num /= 10;
-    }
-    length += i + is_negative;
-    while (i > 0)
-    {
-        _putchar(number_str[--i]);
-    }
-    return (length);
+int num = va_arg(args, int);
+char number_str[12];
+int i = 0, length = 0;
+int is_negative = 0;
+if (num == 0)
+{
+_putchar('0');
+return (1);
 }
+if (num < 0)
+{
+is_negative = 1;
+num = -num;
+_putchar('-');
+length++;
+}
+while (num > 0)
+{
+number_str[i++] = (num % 10) + '0';
+num /= 10;
+}
+length += i + is_negative;
+while (i > 0)
+ _putchar(number_str[--i]);
+}
+return (length);
