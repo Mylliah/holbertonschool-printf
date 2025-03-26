@@ -1,41 +1,49 @@
 #include "main.h"
-#include <stdarg.h>
 
 /**
- * _printf - Fonction principale qui imite printf
- * @format: Chaîne de format contenant les spécificateurs
- * Return: Nombre total de caractères imprimés
+ * _printf
+ * @format:
  */
 int _printf(const char *format, ...)
 {
     va_list args;
-    int count = 0, i, j;
+    int i = 0, j, count = 0;
 
-    format_specifier_t types[] = {
-        {'c', print_char}, {'s', print_string},
-        {'d', print_int}, {'i', print_int},
-        {'u', print_unsigned}, {'o', print_octal},
-        {'x', print_hex}, {'X', print_hex},
-        {'p', print_pointer}, {'\0', NULL}
+    print_format types[] = {
+        {'c', print_char},
+        {'s', print_string},
+        {'%', print_percent},
+        {'d', print_int},
+        {'i', print_int},
+        {0, NULL}
     };
 
-    if (format == NULL)
+    if (!format)
         return (-1);
 
     va_start(args, format);
-
-    for (i = 0; format[i] != '\0'; i++)
+    
+    while (format[i])
     {
-        if (format[i] == '%' && format[i + 1] != '\0')
+        if (format[i] == '%')
         {
             i++;
-            for (j = 0; types[j].specifier; j++)
+            if (!format[i])
+                return (-1);
+
+            for (j = 0; types[j].spec; j++)
             {
-                if (format[i] == types[j].specifier)
+                if (format[i] == types[j].spec)
                 {
                     count += types[j].f(args);
                     break;
                 }
+            }
+            if (!types[j].spec)
+            {
+                _putchar('%');
+                _putchar(format[i]);
+                count += 2;
             }
         }
         else
@@ -43,8 +51,9 @@ int _printf(const char *format, ...)
             _putchar(format[i]);
             count++;
         }
+        i++;
     }
-
+    
     va_end(args);
     return (count);
 }
