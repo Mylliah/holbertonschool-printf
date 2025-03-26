@@ -72,6 +72,7 @@ int _printf(const char *format, ...)
 			{
 				_putchar('%');
 				count++;
+				index++;
 				break;
 			}
 
