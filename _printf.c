@@ -68,6 +68,12 @@ int _printf(const char *format, ...)
 	{
 		if (format[index] == '%')
 		{
+			if (format[index + 1] == '\0')
+			{
+				_putchar('%');
+				count++;
+				break;
+			}	
 			index++;
 			count += handle_specifier(format, args, &index);
 		}
