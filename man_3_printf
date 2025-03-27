@@ -1,0 +1,61 @@
+_printf(3)		Manual page
+
+NAME
+	_printf - custom ouput formatting function
+
+SYNOPSIS
+
+	#include "main.h"
+
+	int _printf(const char *format, ...);
+
+DESCRIPTION
+
+	_print produces output formatted according to the specifications described below (similar to the printf function).
+
+	The format may contain conversion directives beginning with '%'.
+
+	Supported format specifiers:
+	
+		%c : prints a single character
+
+		%s : prints a string
+
+		%d : prints a decimal number
+
+		%i : prints an integer in base 10 (same use as %d)
+
+		%% : prints a literal % character
+
+RETURN VALUE
+
+	- On success, returns the number of characters printed (excluding the terminating null byte).
+	- Returns -1 if format is NULL or empty.
+
+EXAMPLES
+
+	Printing a single character:
+		_printf("Character: [%c]\n", 'H');
+
+	Printing a string: 
+		_printf("String: [%s]\n", "Hello");
+
+	Printing a percent sign:
+		_printf("Percentage: [%%]\n");
+
+	Printing an positive integer:
+		_printf("Number: [%d]\n", 123);
+
+	Printing a negative integer:
+		_printf("Negative number: [%i]\n", -123);
+
+	Printing a combination of types:
+		_printf("Character: [%c], String: [%s], Integer: [%d]\n", 'X', "Test", 42);
+
+DATE
+
+	25 March 2025
+
+AUTHOR
+
+	Warrre and Mylliah

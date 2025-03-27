@@ -19,7 +19,7 @@ Votre code sera compilé avec la commande suivante :
 ```sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 ```
-Assurez-vous que tous vos fichiers respectent cette norme.
+
 
 ## Utilisation
 
@@ -35,6 +35,10 @@ int main(void)
     printf("Longueur renvoyée : %d\n", len);
     return (0);
 }
+```
+la commande d'exécution
+```
+./printf
 ```
 
 ## Normes de codage
