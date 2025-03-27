@@ -2,7 +2,7 @@
 
 ## Description
 
-`_printf` permet d'afficher des chaînes de caractères formatées avec des spécificateurs de conversion.
+`_printf` permet d'afficher des  formar avec des spécificateurs de conversion.
 
 ## Fonctionnalités implémentées
 
@@ -19,7 +19,10 @@ Votre code sera compilé avec la commande suivante :
 ```sh
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -Wno-format *.c
 ```
-
+la commande d'exécution
+```
+./printf
+```
 
 ## Utilisation
 
@@ -36,17 +39,13 @@ int main(void)
     return (0);
 }
 ```
-la commande d'exécution
-```
-./printf
-```
 
 ## Normes de codage
 
-- Respect des normes Betty (`betty-style.pl` et `betty-doc.pl`)
+- Respect des normes Betty
 - Pas de variables globales
 - Maximum de 5 fonctions par fichier
-- Tous les fichiers doivent être terminés par une nouvelle ligne
+- les fichiers sont terminés par une nouvelle ligne
 
 ## Auteurs
 
