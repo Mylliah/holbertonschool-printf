@@ -222,7 +222,7 @@ AUTHOR
 
 ![alt text](_printf_flowchart.png)
 
-## Auteurs
+## Authors
 
 - [Warrre Git Hub](https://github.com/Warrre)
 - [Mylliah Git Hub](https://github.com/Mylliah)
