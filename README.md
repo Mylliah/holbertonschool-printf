@@ -1,4 +1,4 @@
-# Printf
+# Printf Project 
 
 ## Description
 
@@ -24,19 +24,19 @@ la commande d'exécution
 ./printf
 ```
 
+## Flowchart
+
+![Flowchart](nom.drawio.png)
+
+
 ## Utilisation
 
 Voici un exemple d'utilisation de `_printf` :
 ```c
-#include "main.h"
-#include <stdio.h>
 
 int main(void)
 {
-    int len;
     len = _printf("Affichage d'un entier : %d\n", 42);
-    printf("Longueur renvoyée : %d\n", len);
-    return (0);
 }
 ```
 
