@@ -154,6 +154,11 @@ Percentage: %
 Combination: A test 100%
 ```
 ## Man page
+
+```
+man ./man_3_printf
+```
+
 ```
 _printf(3)		Manual page
 
