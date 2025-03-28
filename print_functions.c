@@ -21,7 +21,7 @@ void _putchar(char c)
  */
 int print_char(va_list args)
 {
-	_putchar(va_arg(args, int));
+	_putchar(va_arg(args, int)); /* récupère et affiche le c. */
 	return (1);
 }
 
@@ -35,7 +35,7 @@ int print_char(va_list args)
 
 int print_specifier(va_list args)
 {
-	(void)args;
+	(void)args; /* évite un avertissement de variable non utilisée */
 	_putchar('%');
 	return (1);
 }
@@ -51,13 +51,13 @@ int print_specifier(va_list args)
 
 int print_string(va_list args)
 {
-	char *str = va_arg(args, char *);
+	char *str = va_arg(args, char *); /* récupère la chaîne de c */
 	int len = 0;
 
-	if (!str)
+	if (!str) /* gestion du cas NULL */
 		str = "(null)";
 
-	while (*str)
+	while (*str) /* affichage c. par c. */
 	{
 		_putchar(*str++);
 		len++;
@@ -75,39 +75,39 @@ int print_string(va_list args)
 
 int print_int(va_list args)
 {
-	int num = va_arg(args, int);
+	int num = va_arg(args, int); /* récupère l'entier */
 
 	int len = 0;
-	unsigned int abs_num;
-	unsigned int divisor = 1;
+	unsigned int abs_num; /* stocke valeur absolue de num */
+	unsigned int divisor = 1; /* pour extraire chaque chiffre */
 
-	if (num < 0)
+	if (num < 0) /* gestion négatif */
 	{
 		_putchar('-');
 		len++;
-		abs_num = (unsigned int)(-num);
+		abs_num = (unsigned int)(-num); /* obtenir valeur abs et éviter dépasser */
 	}
-	else
+	else /* sinon convertion directe en abs */
 	{
 		abs_num = (unsigned int)num;
 	}
 
-	if (abs_num == 0)
+	if (abs_num == 0) /* gestion cas = 0 */
 	{
 		_putchar('0');
 		return (len + 1);
 	}
 
-	while (abs_num / divisor > 9)
+	while (abs_num / divisor > 9) /* extraire chiffres 1 par 1 si nbr de 2 ou + */
 		divisor *= 10;
 
-	while (divisor > 0)
+	while (divisor > 0) /* extraction et affichage 1 par 1 */
 	{
-		_putchar((abs_num / divisor) + '0');
-		abs_num %= divisor;
-		divisor /= 10;
-		len++;
+		_putchar((abs_num / divisor) + '0'); /* conversion ASCII */
+		abs_num %= divisor; /* reste division */
+		divisor /= 10; /* réduction division */
+		len++; /* nbr de c. imprimés */
 	}
 
-	return (len);
+	return (len); /* maj de count dans _printf */
 }
